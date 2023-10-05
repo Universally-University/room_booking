@@ -2,7 +2,6 @@
 
 set -e
 
-
 /home/www-data/app/.venv/bin/python /home/www-data/app/manage.py makemigrations
 /home/www-data/app/.venv/bin/python /home/www-data/app/manage.py migrate
 /home/www-data/app/.venv/bin/python /home/www-data/app/manage.py collectstatic
