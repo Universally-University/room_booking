@@ -2,15 +2,15 @@ services:
   frontend:
     build:
       context: .
-    container_name: room_booking
+    container_name: room_booking_testing
     ports:
       - "8000:80"
     volumes:
-      - ./room_booking/static:/home/www-data/app/static:ro
-      - ./room_booking/api:/home/www-data/app/api:ro
-      - ./room_booking/frontend:/home/www-data/app/frontend:ro
-      - ./room_booking/room_booking:/home/www-data/app/room_booking:ro
-      - ./room_booking/templates:/home/www-data/app/templates:ro
+      - ./room_booking/static:/home/www-data/app/static
+      - ./room_booking/api:/home/www-data/app/api
+      - ./room_booking/frontend:/home/www-data/app/frontend
+      - ./room_booking/room_booking:/home/www-data/app/room_booking
+      - ./room_booking/templates:/home/www-data/app/templates
     environment:
       - NAME='Room Booking' # Pretty Name
       - APPNAME=room_booking # Django project name. The folder name that contains the wsgi.py file.
