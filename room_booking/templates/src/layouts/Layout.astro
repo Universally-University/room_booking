@@ -1,0 +1,36 @@
+---
+import Header from "@components/Header.astro";
+import "@fontsource/plus-jakarta-sans"; 
+import '@fontsource/plus-jakarta-sans/500.css';
+import '@fontsource/plus-jakarta-sans/700.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	
+	<!-- Slot is essentially replaced by other component, say for example the url is /about -->
+	<!-- The content will be
+		<body>
+			<About></About>	
+		</body>
+	-->
+	
+	<body class="bg-black min-h-screen flex-col flex">
+		<Header title='Big Reserving Energy'></Header>
+		<slot />
+	</body>
+</html>

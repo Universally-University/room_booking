@@ -1,0 +1,33 @@
+---
+import Layout from "@layouts/Layout.astro";
+import moment from 'moment';
+import _ from 'lodash';
+import ReservingRow from "@components/ReservingRow.astro";
+
+const rangeOfDays = _.range(1,8)
+const rangeOfHours = _.range(9, 19)
+
+const reservedHours = []
+---
+<Layout title="Reserve a room">
+    <script>
+        const urlSearchParams = new URLSearchParams(window.location.search);
+        const { roomId } = Object.fromEntries(urlSearchParams.entries());
+    </script>
+    
+    <div class="flex flex-col justify-center items-center py-2">
+        <div class="header grid grid-cols-8 h-10 text-white">
+            <p class="text-center px-2 py-2"></p>
+            { rangeOfDays.map((data) => {
+                return <p class="border text-center px-2 py-2">{moment().add(data, 'days').format('MMM Do YY')}</p>
+            })}
+            { rangeOfHours.map((hour) => {
+                return <ReservingRow currentHour={hour}></ReservingRow>
+            })}
+
+        </div>
+    </div>
+    <p class="text-white">
+        roomId
+    </p>
+</Layout>

@@ -1,0 +1,17 @@
+---
+interface Props {
+	title: string;
+	seatNum: number;
+	roomId: number;
+}
+
+const { title, seatNum, roomId } = Astro.props;
+---
+<a href=`/reserve/?roomId=${roomId}`>
+	<div class="rounded-lg h-28 text-center bg-white py-2 flex flex-col items-center justify-center">
+		<p>{title}</p>
+		<p>Amount of seats: {seatNum}</p>
+	</div>
+</a>
+
+
