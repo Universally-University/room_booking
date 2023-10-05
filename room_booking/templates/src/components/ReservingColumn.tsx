@@ -19,11 +19,7 @@ export default function ReservingColumn({
   const rangeOfHours = _.range(9, 19);
   const alreadyReserved = [10, 18];
 
-  const search = window.location.search;
-  const params = new URLSearchParams(search);
-  const roomId = params.get('roomId');
-
-  // Not pretty, but oh well
+  // Not pretty, but wdyd
   const onClick = (hour: number) => {
     if (selectedColumn !== columnDate) {
       setSelectedHours([hour]);
@@ -40,9 +36,9 @@ export default function ReservingColumn({
 
   return (
     <>
-      {rangeOfHours.map((hour: number) => {
+      {rangeOfHours.map((hour: number, index) => {
         if (_.includes(alreadyReserved, hour)) {
-          return <p className="border text-black bg-slate-300 text-center px-2 py-2 h-12"></p>;
+          return <p key={index} className="border text-black bg-slate-300 text-center px-2 py-2 h-12"></p>;
         } else {
           return (
             <p
@@ -52,6 +48,7 @@ export default function ReservingColumn({
               className={`border text-black text-center px-2 py-2 h-12 ${
                 _.includes(selectedHours, hour) && selectedColumn === columnDate ? 'bg-gray-500' : 'bg-black'
               }`}
+              key={index}
             ></p>
           );
         }
