@@ -1,13 +1,14 @@
 ---
 interface Props {
+    index:number,
     roomName: string,
     date: Date,
     startTime: string,
     endTime: string
 }
-const {roomName, date, startTime, endTime} = Astro.props;
+const {index, roomName, date, startTime, endTime} = Astro.props;
 ---
-<p class="border text-center px-2 py-2">No.</p>
+<p class="border text-center px-2 py-2">{index}</p>
 <p class="border text-center px-2 py-2">{roomName}</p>
 <p class="border text-center px-2 py-2">{date}</p>
 <p class="border text-center px-2 py-2">{startTime}</p>

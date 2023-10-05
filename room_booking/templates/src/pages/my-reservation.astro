@@ -1,13 +1,11 @@
 ---
-import ReservedRow from '@components/ReservedRow.astro';
 import Layout from '../layouts/Layout.astro';
 import ReservedHeader from '@components/ReservedHeader.astro';
+import ReservedRow from '@components/ReservedRow.astro';
+import { getMyReservation } from 'src/api/getMyReservation';
 
-// Fetch from /user
-const response = await fetch(
-    "https://jsonplaceholder.typicode.com/posts/1"
-)
-const data = await response.json()
+const response: JSON[] = await getMyReservation(1);
+console.log(response)
 ---
 
 <!-- Astro uses file-based routing so this page is exposed at /my-reservation -->
@@ -17,10 +15,14 @@ const data = await response.json()
         <div class="flex flex-col justify-center items-center py-2">
 			<div class="header grid grid-cols-5 h-10 text-white">
 				<ReservedHeader></ReservedHeader>
-				<ReservedHeader></ReservedHeader>
-				<ReservedHeader></ReservedHeader>
-				<ReservedHeader></ReservedHeader>
-				<ReservedHeader></ReservedHeader>
+				{response.map((data: any, index: number) => {
+					return <ReservedRow 
+					index={index + 1} 
+					date={data.date} 
+					endTime={data.end_time} 
+					roomName={data.room} 
+					startTime={data.start_time} ></ReservedRow>
+				})}
 			</div>
 		</div>
 	</main>
