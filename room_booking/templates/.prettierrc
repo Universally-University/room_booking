@@ -6,7 +6,7 @@
     "tabWidth": 4,
     "overrides": [
         {
-            "files": "*.{json,yaml}",
+            "files": "*.{json,yaml,tsx}",
             "options": {
                 "tabWidth": 2
             }
