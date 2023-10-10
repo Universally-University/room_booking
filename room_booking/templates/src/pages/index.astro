@@ -1,22 +1,7 @@
 ---
-import { getAllRooms } from 'src/api/getAllRooms';
 import Layout from '../layouts/Layout.astro';
-import RoomCard from '@components/RoomCard.astro';
-
-const roomData : JSON[] = await getAllRooms();
+import Main from '@components/Main.tsx';
 ---
 <Layout title="Welcome to Astro.">
-	<main class="flex flex-col items-center justify-center grow">
-		<p class="text-white text-3xl font-jakarta py-4">Reserve a room</p>
-		<div class="grid grid-cols-3 gap-4 w-1/2">
-			{roomData.map((data: any, index: number) => {
-				return <RoomCard 
-					seatNum={data.num_seats}
-					title={`Room ${data.room_id}`} 
-					roomId={data.room_id}>
-				</RoomCard>
-			})}
-		</div>
-	</main>
+	<Main client:only></Main>
 </Layout>
-

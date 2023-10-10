@@ -14,7 +14,7 @@ gunicorn = "^21.2.0"
 mysqlclient = "^2.2.0"
 tqdm = "^4.66.1"
 django-filter = "^23.3"
-
+django-cors-headers = "^4.2.0"
 
 [tool.poetry.group.dev.dependencies]
 isort = "^5.12.0"

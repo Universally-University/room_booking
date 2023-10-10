@@ -10,7 +10,7 @@ const rangeOfHours = _.range(9, 19);
 export default function ReservingTable() {
   const [selectedColumn, setSelectedColumn] = useState('');
   const [selectedHours, setSelectedHours] = useState<number[]>([]);
-
+  const [bookButtonClicked, setBookButtonClicked] = useState(0);
   const search = window.location.search;
   const params = new URLSearchParams(search);
   const roomId = Number(params.get('roomId'));
@@ -18,7 +18,11 @@ export default function ReservingTable() {
   const onClick = async () => {
     console.log(selectedColumn, selectedHours);
     const date = moment(selectedColumn, 'MMM Do YY');
-    bookRoom(date, selectedHours, roomId);
+
+    bookRoom(date, selectedHours, roomId).then(() => {
+      alert('Succesfully booked room');
+    });
+    setBookButtonClicked((prev) => prev + 1);
   };
   return (
     <>
@@ -44,6 +48,7 @@ export default function ReservingTable() {
                   setSelectedColumn={setSelectedColumn}
                   selectedHours={selectedHours}
                   setSelectedHours={setSelectedHours}
+                  bookButtonClicked={bookButtonClicked}
                 ></ReservingColumn>
               </div>
             );

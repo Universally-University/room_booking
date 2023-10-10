@@ -28,7 +28,7 @@ export const bookRoom = async (selectedDate: moment.Moment, selectedHours: numbe
         room: roomId
     };
 
-    const response = await fetch(`${BASE_URL}/api/reserve`, {
+    const response = await fetch(`${BASE_URL}/api/reserve/`, {
         method: 'POST',
         mode: 'cors',
         headers: {

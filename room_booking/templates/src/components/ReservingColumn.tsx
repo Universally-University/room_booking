@@ -1,5 +1,7 @@
 import _ from 'lodash';
-import { useEffect, type SetStateAction, type Dispatch } from 'react';
+import { useEffect, type SetStateAction, type Dispatch, useState } from 'react';
+import moment from 'moment';
+import { getRoomReservations } from 'src/api/getRoomReservations';
 
 interface Props {
   selectedHours: number[];
@@ -7,6 +9,7 @@ interface Props {
   columnDate: string;
   selectedColumn: string;
   setSelectedColumn: Dispatch<SetStateAction<string>>;
+  bookButtonClicked: number;
 }
 
 export default function ReservingColumn({
@@ -14,10 +17,31 @@ export default function ReservingColumn({
   setSelectedColumn,
   columnDate,
   selectedHours,
-  setSelectedHours
+  setSelectedHours,
+  bookButtonClicked
 }: Props) {
   const rangeOfHours = _.range(9, 19);
-  const alreadyReserved = [10, 18];
+  const [reservedHours, setReservedHours] = useState<number[]>([]);
+
+  const date = moment(columnDate, 'MMM Do YY');
+
+  useEffect(() => {
+    getReserved();
+  }, []);
+
+  useEffect(() => {
+    if (selectedColumn === columnDate) setReservedHours([...reservedHours, ...selectedHours]);
+  }, [bookButtonClicked]);
+
+  const getReserved = async () => {
+    const response = await getRoomReservations(date.format('YYYY[-]M[-]D'));
+    for (const i of response) {
+      const startHour = Number(moment(i.start_time, 'H[:]m[:]s').format('H'));
+      const endHour = Number(moment(i.end_time, 'H[:]m[:]s').format('H'));
+      const reservedRange = _.range(startHour, endHour);
+      setReservedHours([...reservedHours, ...reservedRange]);
+    }
+  };
 
   // Not pretty, but wdyd
   const onClick = (hour: number) => {
@@ -26,7 +50,7 @@ export default function ReservingColumn({
     } else {
       const offset = selectedHours[0] > hour ? -1 : 1;
       const newRange = _.range(selectedHours[0], hour + offset);
-      for (const i of alreadyReserved) {
+      for (const i of reservedHours) {
         if (_.includes(newRange, i)) return;
       }
       setSelectedHours(newRange);
@@ -37,7 +61,7 @@ export default function ReservingColumn({
   return (
     <>
       {rangeOfHours.map((hour: number, index) => {
-        if (_.includes(alreadyReserved, hour)) {
+        if (_.includes(reservedHours, hour)) {
           return <p key={index} className="border text-black bg-slate-300 text-center px-2 py-2 h-12"></p>;
         } else {
           return (

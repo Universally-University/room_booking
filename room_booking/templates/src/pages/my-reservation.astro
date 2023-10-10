@@ -1,30 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ReservedHeader from '@components/ReservedHeader.astro';
-import ReservedRow from '@components/ReservedRow.astro';
-import { getMyReservation } from 'src/api/getMyReservation';
-
-const response: JSON[] = await getMyReservation(1);
-console.log(response)
+import ReservationList from "@components/ReservationList";
 ---
-
-<!-- Astro uses file-based routing so this page is exposed at /my-reservation -->
 <Layout title="Welcome to Astro.">
-	<main class="bg-grey items-center flex flex-col">
-		<h1 class="text-white font-jakarta text-2xl py-4">Reserved rooms</h1>
-        <div class="flex flex-col justify-center items-center py-2">
-			<div class="header grid grid-cols-5 h-10 text-white">
-				<ReservedHeader></ReservedHeader>
-				{response.map((data: any, index: number) => {
-					return <ReservedRow 
-					index={index + 1} 
-					date={data.date} 
-					endTime={data.end_time} 
-					roomName={data.room} 
-					startTime={data.start_time} ></ReservedRow>
-				})}
-			</div>
-		</div>
-	</main>
+	<ReservationList client:only></ReservationList>
 </Layout>
 
