@@ -16,9 +16,9 @@ export default function ReservationList() {
 
   return (
     <main className="bg-grey items-center flex flex-col">
-      <h1 className="text-white font-jakarta text-2xl py-4">Reserved rooms</h1>
+      <h1 className="text-black font-jakarta text-2xl py-4">Reserved rooms</h1>
       <div className="flex flex-col justify-center items-center py-2">
-        <div className="header grid grid-cols-5 h-10 text-white">
+        <div className="header grid grid-cols-5 h-10 text-black">
           <ReservedHeader></ReservedHeader>
           {rowData.map((data: any, index: number) => {
             return (

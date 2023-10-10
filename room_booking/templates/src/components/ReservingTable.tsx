@@ -27,12 +27,12 @@ export default function ReservingTable() {
   return (
     <>
       <div className="w-3/4 m-auto grow justify-center items-center py-2">
-        <div className="header grid grid-cols-8 h-10 text-white">
+        <div className="header grid grid-cols-8 h-10 text-black">
           <div className="text-center py-2">
             <p className="text-center py-2 h-12 text-black"></p>
             {rangeOfHours.map((data, index) => {
               return (
-                <p key={index} className="border text-center px-2 h-12 py-2">
+                <p key={index} className="border border-gray-400 text-center px-2 h-12 py-2">
                   {moment().minutes(0).hour(data).format('h:mm a')}
                 </p>
               );
@@ -41,7 +41,9 @@ export default function ReservingTable() {
           {rangeOfDays.map((data, index) => {
             return (
               <div className="text-center py-2" key={index}>
-                <p className="border text-center px-2 h-12 py-2">{moment().add(data, 'days').format('MMM Do YY')}</p>
+                <p className="border border-gray-400 text-center px-2 h-12 py-2">
+                  {moment().add(data, 'days').format('MMM Do YY')}
+                </p>
                 <ReservingColumn
                   columnDate={moment().add(data, 'days').format('MMM Do YY')}
                   selectedColumn={selectedColumn}

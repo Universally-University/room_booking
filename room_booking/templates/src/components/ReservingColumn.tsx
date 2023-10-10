@@ -62,15 +62,15 @@ export default function ReservingColumn({
     <>
       {rangeOfHours.map((hour: number, index) => {
         if (_.includes(reservedHours, hour)) {
-          return <p key={index} className="border text-black bg-slate-300 text-center px-2 py-2 h-12"></p>;
+          return <p key={index} className="border text-black bg-gray-500 text-center px-2 py-2 h-12"></p>;
         } else {
           return (
             <p
               onClick={() => {
                 onClick(hour);
               }}
-              className={`border text-black text-center px-2 py-2 h-12 ${
-                _.includes(selectedHours, hour) && selectedColumn === columnDate ? 'bg-gray-500' : 'bg-black'
+              className={`border border-gray-400 text-black text-center px-2 py-2 h-12 ${
+                _.includes(selectedHours, hour) && selectedColumn === columnDate ? 'bg-slate-300' : 'bg-white'
               }`}
               key={index}
             ></p>
