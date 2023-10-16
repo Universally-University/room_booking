@@ -26,8 +26,9 @@ export default function ReservingColumn({
   const date = moment(columnDate, 'MMM Do YY');
 
   useEffect(() => {
+    setReservedHours([]);
     getReserved();
-  }, []);
+  }, [columnDate]);
 
   useEffect(() => {
     if (selectedColumn === columnDate) setReservedHours([...reservedHours, ...selectedHours]);

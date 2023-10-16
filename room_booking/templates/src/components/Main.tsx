@@ -7,7 +7,6 @@ export default function Main() {
 
   const getRooms = async () => {
     const response = await getAllRooms();
-    console.log(response);
     setRoomData(response);
   };
 
