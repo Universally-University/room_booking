@@ -3,9 +3,12 @@ import ReservingColumn from '@components/ReservingColumn.tsx';
 import moment from 'moment';
 import { useState } from 'react';
 import { bookRoom } from 'src/api/bookRoom';
+import Cookies from 'js-cookie';
 
 export default function ReservingTable() {
   const rangeOfHours = _.range(9, 19);
+  const memberId = Number(Cookies.get('member_ID'));
+
   const [selectedColumn, setSelectedColumn] = useState('');
   const [selectedHours, setSelectedHours] = useState<number[]>([]);
   const [bookButtonClicked, setBookButtonClicked] = useState(0);
@@ -73,7 +76,10 @@ export default function ReservingTable() {
             );
           })}
           <div className="col-span-8 py-2 flex justify-center items-center">
-            <p onClick={onClick} className="w-min bg-white px-2 rounded-md text-black">
+            <p
+              onClick={onClick}
+              className={`w-min bg-white px-2 rounded-md text-black ${Number.isNaN(memberId) ? 'hidden' : ''}`}
+            >
               Book
             </p>
           </div>

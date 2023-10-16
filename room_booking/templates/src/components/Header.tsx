@@ -21,7 +21,11 @@ export default function Header({ title }: Props) {
             Home
           </a>
         </div>
-        <div className="px-4 ease-in-out duration-150 text-center cursor-pointer py-1 border-white border-y md:border-0 border-x-0 w-full md:w-fit">
+        <div
+          className={`px-4 ease-in-out duration-150 text-center cursor-pointer py-1 border-white border-y md:border-0 border-x-0 w-full md:w-fit ${
+            Number.isNaN(memberId) ? 'hidden' : ''
+          }`}
+        >
           <a className="font-jakarta my-5" href="/library/my-reservation">
             My Reservation
           </a>
