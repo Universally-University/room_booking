@@ -11,7 +11,9 @@ export default function ReservationList() {
   }, []);
 
   const getMyReservations = async () => {
-    const rowData = await getMyReservation(Number(Cookies.get('member_ID')));
+    const memberId = Number(Cookies.get('member_ID'));
+    if (Number.isNaN(memberId)) return;
+    const rowData = await getMyReservation(memberId);
     setRowdata(rowData);
   };
 
@@ -36,20 +38,4 @@ export default function ReservationList() {
       </div>
     </main>
   );
-}
-
-function getCookie(cname = "member_ID") {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
 }
