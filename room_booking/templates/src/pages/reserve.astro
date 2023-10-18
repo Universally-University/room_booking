@@ -2,7 +2,10 @@
 import ReservingTable from "@components/ReservingTable";
 import Layout from "@layouts/Layout.astro";
 import _ from 'lodash';
+const cookie = Astro.cookies.get('member_ID');
+console.log("cookie")
 ---
 <Layout title="Reserve a room">
+    {cookie}
     <ReservingTable client:only></ReservingTable>
 </Layout>

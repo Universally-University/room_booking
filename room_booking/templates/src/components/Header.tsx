@@ -1,18 +1,22 @@
 import LoggedIn from '@components/LoggedIn';
 import Cookies from 'js-cookie';
+// import GetCookie from '@components/getCookie';
+import { useState, useEffect } from 'react';
+
 
 interface Props {
   title: string;
+  member_ID: string;
 }
 
-export default function Header({ title }: Props) {
-  const memberId = Number(Cookies.get('member_ID'));
-
+export default function Header({ title, member_ID }: Props) {
+  const memberId = member_ID;
+  console.log(Cookies);
   return (
     <header className="h-16 bg-blue-500 border-b flex flex-col md:flex-row md:justify-between items-center">
       <div className="logo pl-3 text-white font-bold flex items-center justify-between">
         <a href="/" className="text-3xl font-jakarta">
-          {title}
+          {title}: {memberId}
         </a>
       </div>
       <div className="md:flex menu text-white h-full flex flex-col md:flex-row items-center justify-center md:mx-4">
@@ -23,9 +27,11 @@ export default function Header({ title }: Props) {
         </div>
         <div
           className={`px-4 ease-in-out duration-150 text-center cursor-pointer py-1 border-white border-y md:border-0 border-x-0 w-full md:w-fit ${
-            Number.isNaN(memberId) ? 'hidden' : ''
+            Number.isNaN(Number(Cookies.get('member_ID'))) ? 'hidden' : ''
           }`}
         >
+          {' '}
+          {/* {console.log(Number(Cookies.get('member_ID')))} */}
           <a className="font-jakarta my-5" href="/library/my-reservation">
             My Reservation
           </a>

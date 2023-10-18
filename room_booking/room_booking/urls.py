@@ -16,12 +16,14 @@ Including another URLconf
 """
 from django.urls import include
 from django.urls import path, re_path
+from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
 service_name = settings.SERVICE_NAME
 
 urlpatterns = [
+    re_path(rf"^(?:{service_name}\/)?admin\/", admin.site.urls),
     re_path(rf"^(?:{service_name}\/)?api\/", include("api.urls")),
     re_path(rf"^(?:{service_name}\/)?", include("frontend.urls")),
 ]

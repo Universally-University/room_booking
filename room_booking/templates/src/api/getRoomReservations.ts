@@ -1,7 +1,7 @@
 import { BASE_URL } from 'src/api/constant';
 
 export const getRoomReservations = async (date: string) => {
-    const response = await fetch(`/api/reserve/?date=${date}`, {
+    const response = await fetch(`/library/api/reserve/?date=${date}`, {
         method: 'GET',
         mode: 'cors',
         headers: {

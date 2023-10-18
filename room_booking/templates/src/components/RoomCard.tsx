@@ -5,7 +5,7 @@ interface Props {
 }
 
 export default function RoomCard({ title, seatNum, roomId }: Props) {
-  const roomIdStr = `reserve/?roomId=` + roomId.toString();
+  const roomIdStr = `library/reserve/?roomId=` + roomId.toString();
   return (
     <>
       <a href={roomIdStr}>
