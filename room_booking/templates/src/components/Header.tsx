@@ -11,7 +11,7 @@ export default function Header({ title }: Props) {
   return (
     <header className="h-16 bg-blue-500 border-b flex flex-col md:flex-row md:justify-between items-center">
       <div className="logo pl-3 text-white font-bold flex items-center justify-between">
-        <a href="/" className="text-3xl font-jakarta">
+        <a href="/library" className="text-3xl font-jakarta">
           {title}
         </a>
       </div>
