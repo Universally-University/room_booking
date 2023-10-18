@@ -51,6 +51,7 @@ RUN ln -s /etc/gunicorn/gunicorn.sh /etc/init.d/gunicorn
 RUN <<EOF
 mkdir /var/log/gunicorn
 mkdir -p /var/www/library
+chown -R www-data:www-data /var/www
 chown -R www-data:www-data /var/log/gunicorn
 mv /home/www-data/app/build/static/* /var/www/static
 chmod -R o-rwx /etc/gunicorn

@@ -9,6 +9,8 @@ export default function ReservingTable() {
   const rangeOfHours = _.range(9, 19);
   const memberId = Number(Cookies.get('member_ID'));
 
+  console.log(memberId);
+
   const [selectedColumn, setSelectedColumn] = useState('');
   const [selectedHours, setSelectedHours] = useState<number[]>([]);
   const [bookButtonClicked, setBookButtonClicked] = useState(0);

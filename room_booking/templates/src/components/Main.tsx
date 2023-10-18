@@ -1,13 +1,14 @@
 import { getAllRooms } from 'src/api/getAllRooms';
 import RoomCard from '@components/RoomCard.tsx';
 import { useEffect, useState } from 'react';
+// import {Astro} from 'astro';
 
 export default function Main() {
   const [roomData, setRoomData] = useState<JSON[]>([]);
-
+  console.log("Main")
   const getRooms = async () => {
     const response = await getAllRooms();
-    console.log(response);
+    // console.log(Astro.cookie);
     setRoomData(response);
   };
 

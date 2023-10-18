@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ReservationList from "@components/ReservationList";
+import ReservationList from '@components/ReservationList';
+const cookie = Astro.cookies.get('member_ID').value;
+console.log("cookie");
 ---
-<Layout title="Welcome to Astro.">
-	<ReservationList client:only></ReservationList>
-</Layout>
 
+<Layout title="ServiceUni: Library">
+    <h1>{cookie}</h1>
+    <ReservationList member_ID={cookie} client:only />
+</Layout>
