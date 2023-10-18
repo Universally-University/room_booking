@@ -8,17 +8,6 @@ interface Props {
 	title: string;
 }
 const { title } = Astro.props;
-const member_ID = getCookie();
-function getCookie(cookieName = "member_ID") {
-				let cookies = document.cookie.split(';');
-			for (let i = 0; i < cookies.length; i++) {
-				let cookie = cookies[i].trim();
-				if (cookie.startsWith(cookieName)) {
-				let value = cookie.split('=')[1];
-				return value
-				}
-			}
-		}
 ---
 
 <!doctype html>

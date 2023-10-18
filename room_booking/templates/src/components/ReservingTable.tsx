@@ -9,8 +9,6 @@ export default function ReservingTable() {
   const rangeOfHours = _.range(9, 19);
   const memberId = Number(Cookies.get('member_ID'));
 
-  console.log(memberId);
-
   const [selectedColumn, setSelectedColumn] = useState('');
   const [selectedHours, setSelectedHours] = useState<number[]>([]);
   const [bookButtonClicked, setBookButtonClicked] = useState(0);
@@ -24,7 +22,7 @@ export default function ReservingTable() {
     console.log(selectedColumn, selectedHours);
     const date = moment(selectedColumn, 'MMM Do YY');
 
-    bookRoom(date, selectedHours, roomId).then(() => {
+    bookRoom(date, selectedHours, roomId, memberId).then(() => {
       alert('Succesfully booked room');
     });
     setBookButtonClicked((prev) => prev + 1);
@@ -38,13 +36,12 @@ export default function ReservingTable() {
   const prevWeek = () => {
     const firstDay = rangeOfDays[0];
     if (firstDay == 1) return;
-    console.log(rangeOfDays);
     setRangeOfDays(_.range(firstDay - 7, firstDay));
-    console.log(rangeOfDays);
   };
 
   return (
     <>
+      <p className="text-black text-3xl text-center font-jakarta py-4">Room {roomId} reservations</p>
       <div className="w-3/4 flex grow m-auto justify-center items-center py-2">
         <div className="cursor-pointer px-5 text-3xl" onClick={prevWeek}>
           &lt;
@@ -73,6 +70,7 @@ export default function ReservingTable() {
                   selectedHours={selectedHours}
                   setSelectedHours={setSelectedHours}
                   bookButtonClicked={bookButtonClicked}
+                  roomId={roomId}
                 ></ReservingColumn>
               </div>
             );

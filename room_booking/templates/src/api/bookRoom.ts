@@ -14,7 +14,7 @@ import { BASE_URL } from 'src/api/constant';
 }
 `;
 
-export const bookRoom = async (selectedDate: moment.Moment, selectedHours: number[], roomId: number) => {
+export const bookRoom = async (selectedDate: moment.Moment, selectedHours: number[], roomId: number, memberId: number) => {
     const start_time = min(selectedHours)!!;
     const end_time = max(selectedHours)!! + 1;
 
@@ -24,7 +24,7 @@ export const bookRoom = async (selectedDate: moment.Moment, selectedHours: numbe
         date: selectedDate.format('YYYY-MM-DD'),
         start_time: start_time_str,
         end_time: end_time_str,
-        member_id: 1,
+        member_id: memberId,
         room: roomId
     };
 

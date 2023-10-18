@@ -1,11 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ReservationList from '@components/ReservationList';
-const cookie = Astro.cookies.get('member_ID').value;
-console.log("cookie");
 ---
 
 <Layout title="ServiceUni: Library">
-    <h1>{cookie}</h1>
-    <ReservationList member_ID={cookie} client:only />
+    <ReservationList client:only />
 </Layout>

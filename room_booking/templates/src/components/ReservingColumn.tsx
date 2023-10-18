@@ -10,6 +10,7 @@ interface Props {
   selectedColumn: string;
   setSelectedColumn: Dispatch<SetStateAction<string>>;
   bookButtonClicked: number;
+  roomId: number;
 }
 
 export default function ReservingColumn({
@@ -18,7 +19,8 @@ export default function ReservingColumn({
   columnDate,
   selectedHours,
   setSelectedHours,
-  bookButtonClicked
+  bookButtonClicked,
+  roomId
 }: Props) {
   const rangeOfHours = _.range(9, 19);
   const [reservedHours, setReservedHours] = useState<number[]>([]);
@@ -35,7 +37,7 @@ export default function ReservingColumn({
   }, [bookButtonClicked]);
 
   const getReserved = async () => {
-    const response = await getRoomReservations(date.format('YYYY[-]M[-]D'));
+    const response = await getRoomReservations(date.format('YYYY[-]M[-]D'), roomId);
     for (const i of response) {
       const startHour = Number(moment(i.start_time, 'H[:]m[:]s').format('H'));
       const endHour = Number(moment(i.end_time, 'H[:]m[:]s').format('H'));

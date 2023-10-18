@@ -1,14 +1,12 @@
 import LoggedIn from '@components/LoggedIn';
+import MyReservation from '@components/MyReservation';
 import Cookies from 'js-cookie';
-// import GetCookie from '@components/getCookie';
-import { useState, useEffect } from 'react';
 
 interface Props {
   title: string;
-  member_ID: string;
 }
 
-export default function Header({ title, member_ID }: Props) {
+export default function Header({ title }: Props) {
   const memberId = Number(Cookies.get('member_ID'));
   // console.log(Cookies);
   return (
@@ -24,17 +22,7 @@ export default function Header({ title, member_ID }: Props) {
             Home
           </a>
         </div>
-        <div
-          className={`px-4 ease-in-out duration-150 text-center cursor-pointer py-1 border-white border-y md:border-0 border-x-0 w-full md:w-fit ${
-            Number.isNaN(Number(Cookies.get('member_ID'))) ? 'hidden' : ''
-          }`}
-        >
-          {' '}
-          {/* {console.log(Number(Cookies.get('member_ID')))} */}
-          <a className="font-jakarta my-5" href="/library/my-reservation">
-            My Reservation
-          </a>
-        </div>
+        <MyReservation memberId={memberId}></MyReservation>
         <div className="group relative px-2 h-16 flex flex-col ease-in-out duration-150 text-center  cursor-pointer border-white border-y md:border-0 border-x-0 w-[120px]">
           <div className="font-jakarta my-5">Enrolment</div>
           <a

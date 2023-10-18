@@ -6,8 +6,7 @@ import react from '@astrojs/react';
 // https://astro.build/config
 export default defineConfig({
     integrations: [tailwind(), react()],
-    base: '/library/library',
-    publicDir: './library/library',
+    base: '/library',
     build: {
         assets: 'static/_astro'
     }
