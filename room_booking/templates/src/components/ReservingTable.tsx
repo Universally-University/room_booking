@@ -4,6 +4,7 @@ import moment from 'moment';
 import { useState } from 'react';
 import { bookRoom } from 'src/api/bookRoom';
 import Cookies from 'js-cookie';
+import Header from '@components/Header';
 
 export default function ReservingTable() {
   const rangeOfHours = _.range(9, 19);
@@ -41,6 +42,7 @@ export default function ReservingTable() {
 
   return (
     <>
+      <Header memberId={memberId} title={'Library Booking'}></Header>
       <p className="text-black text-3xl text-center font-jakarta py-4">Room {roomId} reservations</p>
       <div className="w-3/4 flex grow m-auto justify-center items-center py-2">
         <div className="cursor-pointer px-5 text-3xl" onClick={prevWeek}>

@@ -1,14 +1,14 @@
 import LoggedIn from '@components/LoggedIn';
 import MyReservation from '@components/MyReservation';
 import Cookies from 'js-cookie';
+import { useState } from 'react';
 
 interface Props {
   title: string;
+  memberId: number;
 }
 
-export default function Header({ title }: Props) {
-  const memberId = Number(Cookies.get('member_ID'));
-  // console.log(Cookies);
+export default function Header({ title, memberId }: Props) {
   return (
     <header className="h-16 bg-blue-500 border-b flex flex-col md:flex-row md:justify-between items-center">
       <div className="logo pl-3 text-white font-bold flex items-center justify-between">
